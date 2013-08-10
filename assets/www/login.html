@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" class="hl-en not-logged-in ">
+<head>
+    <meta charset="UTF-8" />
+    <title>Log in </title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="format-detection" content="telephone=no" />
+	<script type="text/javascript" src="jquery.tools.min.js"></script>
+	<script type="text/javascript" charset="utf-8" src="cordova-2.5.0.js"></script>
+	<script type="text/javascript" src="database.js"></script>
+	<script src="filesystem.js"></script>
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;"/>
+    
+    
+
+    
+
+<style>
+
+html{
+	
+	height:100%;
+}
+.dialog-main {
+	padding-bottom: 10px;
+	padding: 25px 10px 10px;
+	height:100%;
+}
+
+.dialog {
+margin: 0 auto 30px;
+border: 1px solid #a4baca;
+background: #fdfdfd;
+-webkit-border-radius: 4px;
+border-radius: 4px;
+-webkit-box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+-moz-box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+-webkit-background-clip: padding-box;
+background-clip: padding-box;
+width: 100%;
+display:none;
+
+}
+
+.dialog .header {
+	
+	height: 44px;
+	position: relative;
+	background-color: #8d9fb6;
+	text-align: center;
+	line-height: 43px;
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.01, rgb(232
+		, 38, 91)), color-stop(0.02, rgb(232, 38, 91)),
+		color-stop(0.5, rgb(148, 16, 52)),
+		color-stop(0.51, rgb(148, 16, 52)),
+		color-stop(0.99, rgb(100, 11, 35)), color-stop(1, rgb(65, 7, 23)));
+	background-image: -moz-linear-gradient(center top, rgb(232, 38, 91) 1%,
+		rgb(232, 38, 91) 2%, 
+		rgb(148, 16, 52) 50%,
+		 rgb(148, 16, 52) 51%,
+		rgb(100, 11, 35) 99%, 
+		rgb(65, 7, 23) 100%);
+
+
+}
+
+
+
+.dialog label {
+width: 35%;
+font-size:10pt;
+padding-top: 5px;
+float: left;
+display: inline;
+margin: 0 0 5px;
+font-weight: bold;
+}
+body{
+	font-family: "proxima-nova","Helvetica Neue",Arial,Helvetica,sans-serif;
+	background:#282828;
+}
+a{
+
+	margin-top: 8px;
+-webkit-tap-highlight-color: rgba(63,114,155,0.3);
+color: #3f729b;
+
+}
+.dialog .logo {
+
+
+color: #fff;
+font-size: 14pt;
+margin:0px;
+text-align: center;
+
+font-family: "freight-sans-pro","proxima-nova","Helvetica Neue",Arial,Helvetica,sans-serif;
+}
+
+.dialog input, .dialog .field-group {
+width: 65%;
+}
+input[type=button], input.submit {
+font-weight: bold;
+width: auto !important;
+float: right;
+
+}
+
+input, select, textarea {
+border: 1px solid #ccc;
+padding: 9px 8px 7px;
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+-ms-box-sizing: border-box;
+box-sizing: border-box;
+-webkit-border-radius: 3px;
+border-radius: 3px;
+-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+-moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+}
+
+.button:hover {
+background: #04608E;
+background: -moz-linear-gradient(top, #69a0b6 0, #69a0b6 1px, #277696 1px, #04608e 100%);
+background: -o-linear-gradient(top, #69a0b6 0, #69a0b6 1px, #277696 1px, #04608e 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #69a0b6), color-stop(5%, #69a0b6), color-stop(5%, #277696), color-stop(100%, #04608e));
+background: linear-gradient(top, #69a0b6 0%,#69a0b6 1px,#277696 1px,#04608e 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#277696', endColorstr='#04608E',GradientType=0 );
+border-color: #004a73;
+margin-left:5px;
+}
+.button{
+height:20px;
+background: #0571A6;
+background: -moz-linear-gradient(top, #73aec9 0, #73aec9 1px, #338ab0 1px, #0571a6 100%);
+background: -o-linear-gradient(top, #73aec9 0, #73aec9 1px, #338ab0 1px, #0571a6 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #73aec9), color-stop(5%, #73aec9), color-stop(5%, #338ab0), color-stop(100%, #0571a6));
+background: linear-gradient(top, #73aec9 0%,#73aec9 1px,#338ab0 1px,#0571a6 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#338AB0', endColorstr='#0571A6',GradientType=0 );
+border-color: #045a8b;
+color: #fff !important;
+border-width: 1px;
+border-style: solid;
+-moz-border-radius: 3px;
+-webkit-border-radius: 3px;
+border-radius: 3px;
+cursor: pointer;
+font-size: 14px;
+line-height: 1.35;
+margin-top: 0;
+overflow: visible;
+padding: 3px 10px 2px;
+text-decoration: none !important;
+vertical-align: top;
+width: auto;
+margin-left:5px;
+}
+
+#public{
+	width:auto;
+}
+.form-actions{
+	height:10px;
+}
+
+</style>
+
+
+</head>
+<body>
+
+
+
+
+    <div class="dialog">
+		
+        <div class="header" style="border-bottom:1px solid #f0f0f0">
+            <h1 class="logo">Login</h1>
+            
+        </div>
+
+        <div class="dialog-main">
+            
+
+
+            <div>
+                
+                <p><label for="id_username">Mobile/Email</label> <input name="user" maxlength="30" autocapitalize="off" autocorrect="off" type="text" id="id_username" /></p>
+				 
+				<p><label for="id_password">Password:</label> <input autocapitalize="off" autocorrect="off" type="password" name="password" id="id_password" /></p>
+
+                <p class="form-actions">
+                   
+                    <a class="button-green button" id="login" style="font-weight: bold;  width: auto !important;  float: right;">Login</a>
+                    
+                    <a class="button-green button" href="register.html" style="
+   						 font-weight: bold;  width: auto !important;  float: right;
+					">Register</a>
+                </p>
+				
+            </div>
+        </div>
+
+    </div>
+
+
+<script>
+    $(document).ready(
+     function() {
+	 
+		if(!isMobile.any()){
+			
+			onDeviceReady();
+		}
+			
+			
+    });
+	document.addEventListener("deviceready", onDeviceReady, false);
+	
+	function onDeviceReady(){		
+			
+			initDatabase();		
+					
+			$("#login").click(function(){
+				
+				login();
+			});
+			
+			readProperty(function(data){
+				
+				if(data!=null){
+					executeCommand(data['user']);
+					window.open("jqm/demos/docs/lists/mainpage.html","_self");
+					
+				}else{
+					$(".dialog").css("display","block");
+				}
+				
+			});
+		
+	}
+	
+	
+	
+	function login(){
+	
+		$.get("http://showmystatus.appspot.com/index.jsp?origin=mobile&action=login&user="+$("#id_username").val()+"&password="+$("#id_password").val(),function(data){
+		
+			if(data.indexOf("success")!=-1){
+			
+				var dd=[];
+				
+				dd["property"]="user"
+				dd["value"]=$("#id_username").val();
+				insert("application_data",dd);			
+				dd=[];			
+				dd["property"]="password"
+				dd["value"]=$("#id_password").val();
+				insert("application_data",dd);			
+				window.open("jqm/demos/docs/lists/mainpage.html","_self");
+				
+			}else{
+				
+				showAlert("Login Failure. Try login with proper credentials");
+		
+			}
+		});
+	
+	}
+	
+	 function alertDismissed() {
+	        // do something
+	    }
+
+	    // Show a custom alert
+	    //
+	    function showAlert(data) {
+	        navigator.notification.alert(
+	            data,  // message
+	            alertDismissed,         // callback
+	            'Register',            // title
+	            'Done'                  // buttonName
+	        );
+	    }
+	
+	function executeCommand(command){
+		cordova.exec(function(out) {				
+						showAlert(out);
+				
+			}, function(err) {
+						showAlert(err);
+			}, "GCMPlugin", "user", [command]);
+				
+	 }
+	
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>jQuery Mobile Docs - Lists with Form Controls</title>
+<link rel="stylesheet"
+	href="../../css/themes/default/jquery.mobile-1.2.0.css" />
+
+
+<script src="../../js/jquery.js"></script>
+
+<script src="../../js/jquery.mobile-1.2.0.js"></script>
+
+<script src="../../../../cordova-2.5.0.js"></script>
+
+</head>
+<body>
+	
+		<div data-role="header" class="ui-bar-b">
+
+			<h1>Business Manager</h1>
+
+		</div>
+
+		<div data-role="content">
+			<div class="content-primary">
+				<form>
+
+					<ul style="display: none" id="offlined" data-role="listview"
+						data-inset="true">
+						<li data-role="list-divider data-theme="a"><img
+							src="images/stopped.png" class="ui-li-icon">Data Connection
+							Unavailable</li>
+						<li>
+
+
+
+							<div style="font-weight: bold; font-size: 10pt">Data you
+								see might not be the original updated one.</div>
+
+						</li>
+
+					</ul>
+
+
+					<ul data-role="listview" data-inset="true">
+						<li><a rel="external" href="bt.html"> <img
+								src="images/system_config_services128X128.png" />
+								<h3>Business Tools</h3>
+
+						</a></li>
+						<li><a rel="external" href="ic.html"> <img
+								src="images/dialog_information128X128.png" />
+								<h3>Information Center</h3>
+
+						</a></li>
+						<li><a rel="external" href="index.html"> <img
+								src="images/graph256X256.png" />
+								<h3>Business Track</h3>
+
+						</a></li>
+						<li><a rel="external" href="hd.html"> <img
+								src="images/user_helpdesk720X720.png" />
+								<h3>Help Desk</h3>
+
+						</a></li>
+
+					</ul>
+
+
+
+
+				</form>
+
+
+				<a data-transition="pop" id="busypop" style="display: none"
+					href="#positionWindow" data-rel="popup" data-position-to="window"></a>
+
+					<div data-theme="b" data-overlay-theme="b" data-role="popup"
+						id="positionWindow" style="height: 120px;">
+						<a href="#" data-rel="back" data-role="button" data-theme="a"
+							data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+						<ul data-role="listview" data-theme="b" data-inset="true">
+
+
+							<li>
+
+
+
+								<div style="font-weight: bold; font-size: 10pt">Are you
+									sure want to exit ?</div>
+
+							</li>
+
+						</ul>
+						<button type="button" data-theme="b">Ok</button>
+						<button type="button" data-theme="b">Cancel</button>
+
+					</div>
+			</div>
+			<!--/content-primary -->
+
+		</div>
+		<!-- /content -->
+
+
+
+
+	<!-- /page -->
+
+	<script>
+		var isOffline = false;
+
+		document.addEventListener("deviceready", onDeviceReady, false);
+
+		function onDeviceReady() {
+			// Register the event listener
+			console.log("BackButton Registered........");
+			
+			document.addEventListener("backbutton", onBackKeyDown, false);
+		}
+		
+		
+		var count = 0;
+
+		document.addEventListener("online", function() {
+
+			$("#offlined").css("display", "none");
+			
+			isOffline = false;
+
+		}, false);
+		document.addEventListener("offline", function() {
+
+			$("#offlined").css("display", "block");
+
+			isOffline = true;
+
+		}, false);
+
+		setInterval(function() {
+
+			if (isOffline) {
+
+				$("#offlined").css("display", "block");
+			} else {
+				$("#offlined").css("display", "none");
+
+			}
+
+		}, 5000);
+
+		function onBackKeyDown() {
+			console.log("BackButton Pressed........");
+			//count++;
+			
+			$("#busypop").click();
+			
+			return false;
+		}
+	</script>
+
+</body>
+</html>

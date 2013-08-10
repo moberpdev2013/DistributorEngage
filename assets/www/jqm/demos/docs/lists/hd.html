@@ -1,0 +1,115 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<title>jQuery Mobile Docs - Lists with Form Controls</title> 
+	<link rel="stylesheet"  href="../../css/themes/default/jquery.mobile-1.2.0.css" />  
+	
+
+	<script src="../../js/jquery.js"></script>
+	
+	<script src="../../js/jquery.mobile-1.2.0.js"></script>
+	
+	<script  src="../../../../cordova-2.5.0.js"></script>
+	
+	<script src="../../../../database.js"></script>
+	
+	<script src="../../../../filesystem.js"></script>
+	
+	
+
+</head> 
+<body> 
+
+	<div data-role="header" class="ui-bar-b">
+	<a href="mainpage.html" data-icon="back" id="back">Back</a>
+	<h1>Help Desk</h1>
+	<a href="index.html" data-icon="gear" class="ui-btn-right">Options</a>
+</div>
+
+	<div data-role="content">
+		<div class="content-primary">
+		
+			
+			
+			<ul data-role="listview" data-inset="true">
+				<li><a href="complaints.html" data-rel="dialog" data-transition="flip">Supply Related Complaints</a></li>
+				<li><a href="complaints.html" data-rel="dialog" data-transition="flip">Cooler Related Complaints</a></li>
+				<li><a href="complaints.html" data-rel="dialog" data-transition="flip">Scheme Related Complaints</a></li>
+				<li><a href="complaints.html" data-rel="dialog" data-transition="flip">Claim  Related Complaints</a></li>
+				
+			</ul>
+			
+
+
+
+		
+		
+		
+		</div><!--/content-primary -->		
+
+	</div><!-- /content -->
+
+	
+
+	</div><!-- /page -->
+<script src="../../../../jquery.form.js"></script>
+	
+<script src="../../../../FileAPI.js"></script>
+
+<script>
+
+var user=null;
+
+document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady(){	
+	
+	document.addEventListener("backbutton", function(){
+		
+		$("#back").click();
+		
+	}, false);
+
+			
+	initDatabase();		
+
+	readProperty(function(data){
+				
+				if(data!=null){
+					user = data['user'];
+				
+				}
+				
+	});
+		
+}
+function getUser(){
+	return user;
+}
+function loadData(){
+ if (typeof FileReader == "undefined") alert ("Sorry your browser does not support the File API and this demo will not work for you");
+   var  fileAPI = new FileAPI(
+        document.getElementById("fileList"),
+        document.getElementById("fileDrop"),
+        document.getElementById("fileField")
+    );
+    fileAPI.init();
+    var reset = document.getElementById("reset");
+    reset.onclick = fileAPI.clearList;
+    var upload = document.getElementById("upload");
+    upload.onclick = function(){
+    	
+    	 uploadFile();
+    	
+    }
+}
+
+
+
+
+
+</script>
+
+	</body>
+	</html>

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;"/>
+<script class="jsbin" src="jquery.tools.min.js"></script>
+ <script type="text/javascript" charset="utf-8" src="cordova-2.5.0.js"></script>
+  
+  
+
+<style>
+
+body {
+   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+   font-weight: 300;
+   margin:0px 5px;
+}
+.main{
+	margin:0px auto;
+	
+	max-width:700px;
+	
+	background:#fff;
+	border-radius:10px;
+	-webkit-box-shadow: 0px 0px 12px rgba(0,0,0,.6);
+box-shadow: 0px 0px 12px rgba(0,0,0,.6);
+-webkit-background-clip: padding-box;
+-moz-background-clip: padding;
+background-clip: padding-box;
+-webkit-border-radius: .6em /*{global-radii-blocks}*/;
+border-radius: .6em /*{global-radii-blocks}*/;
+		
+	
+	
+}
+.main{
+	
+	
+}
+.tail,.head{
+width:100%;
+height:7%;	
+min-height: 40px;
+
+
+background-color: #fafafa;
+background-image: -moz-linear-gradient(top,#fff,#f2f2f2);
+background-image: -webkit-gradient(linear,0 0,0 100%,from(#fff),to(#f2f2f2));
+background-image: -webkit-linear-gradient(top,#fff,#f2f2f2);
+background-image: -o-linear-gradient(top,#fff,#f2f2f2);
+background-image: linear-gradient(to bottom,#fff,#f2f2f2);
+background-repeat: repeat-x;
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff',endColorstr='#fff2f2f2',GradientType=0);
+border: 1px solid #d4d4d4;
+-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;
+-webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.065);
+-moz-box-shadow: 0 1px 4px rgba(0,0,0,0.065);
+box-shadow: 0 1px 4px rgba(0,0,0,0.065);
+	
+}
+.tail{
+	border-radius:0 0 10px 10px;
+}
+.head{
+	border-radius:10px 10px 0 0;
+	-webkit-box-shadow: inset 0 -1px 0 rgba(0,0,0,0.1),0 1px 10px rgba(0,0,0,0.1);
+-moz-box-shadow: inset 0 -1px 0 rgba(0,0,0,0.1),0 1px 10px rgba(0,0,0,0.1);
+box-shadow: inset 0 -1px 0 rgba(0,0,0,0.1),0 1px 10px rgba(0,0,0,0.1);
+}
+
+
+.body{
+	width:100%;
+	height:86%;
+	background:#fff;
+	
+}
+
+li{
+list-style:none;
+}
+li:first-child{
+	border:1px solid #f0f0f0;
+	border-bottom:none;
+	border-radius:5px 5px 0 0;
+}
+.head a{
+	margin-top:5px;
+}
+
+
+.shadow{
+	
+-webkit-background-clip: padding-box;
+-moz-background-clip: padding;
+background-clip: padding-box;
+
+
+
+
+}
+.contact{
+	width:90%;border:1px solid #aaa;height:80px;margin:0px auto;background:#fff;border-radius:0px;border:none;border-bottom:1px solid #ccc;
+}
+
+#group{
+	overflow:auto;width:100px;height:100%;border:1px solid #eee;float:left;display:none;
+}
+#group div{
+	width:90%;border:1px solid #aaa;height:80px;margin:5px auto;background:#fff;border-radius:3px;
+}
+#contacts{
+	overflow:auto;width:300px;height:100%;border:1px solid #eee;float:left;background:#fafafa;margin-left:0px;
+}
+.photo{
+	float:left;
+	width:48px;height:48px;padding:3px;border:1px solid #aaa;margin-left:5px;margin-top:12px;border-radius:5px;
+}
+.button{
+	float:right;width:48px;
+}
+.name{
+	text-overflow:clip;
+	padding:0px;
+	font-size:10pt;	
+	color:#444;
+	float:left;	
+	margin:10px;
+	width:100%;
+	-webkit-margin-after: 0px;
+}
+.hdiv{
+		height:100%;
+		float:left;
+		width:auto;
+}
+.head{
+	 margin-top:0px;
+    margin-bottom:0px;
+    color:#fff;
+    background:#6D84B4;
+	text-align:center;    
+    font-size:12px;
+	font-weight:bold;
+}
+.tail{
+	
+}
+
+ul{
+	padding:0px;	
+	background: #f7f7f7;
+	-webkit-margin-before: 0;
+-webkit-margin-after: 0;
+-webkit-margin-start: 0px;
+-webkit-margin-end: 0px;
+-webkit-padding-start: 0px;
+background:#fff;
+border-radius:10px;
+-webkit-box-shadow: 0px 0px 12px rgba(0,0,0,.6);
+box-shadow: 0px 0px 12px rgba(0,0,0,.6);
+-webkit-background-clip: padding-box;
+-moz-background-clip: padding;
+background-clip: padding-box;
+-webkit-border-radius: .6em /*{global-radii-blocks}*/;
+padding:5px;
+margin-top:10px;
+}
+li{
+	list-style:none;
+	height:40px;
+	background:#fff;
+	border-bottom:1px solid #eee;
+	border-left:1px solid #eee;
+	border-right:1px solid #eee;
+}
+li:first-child{
+	border-top:1px solid #eee;
+	border-radius:5px 5px 0px 0px;
+	text-align:center;
+	height:25px;
+	margin-top:0px;
+    margin-bottom:0px;
+    color:#fff;
+    background-color:#6D84B4;
+    padding:2px 0px;	
+	border-radius:5px 5px 0 0;	
+	text-align:center;
+    border:1px solid #3B5998;
+    font-size:14px;
+	font-weight:bold;
+}
+li:last-child{
+	border-radius:0px 0px 5px 5px ;
+}
+.lid{
+	
+	
+}
+li h2{
+	
+	margin:0px;
+	padding:0px;
+}
+</style>
+</head>
+<body>
+	
+	
+	<div class="main">
+	
+		<div class="head">
+	
+			<h2>9881763210</h2>
+                
+        
+    
+		</div>
+		<div class="body">
+		
+			<div  id="group">
+				<div class="shadow">
+				</div>
+				
+			</div>
+			<div id="contacts">
+				<div class="contact shadow">
+					
+					<img class="photo" src="user.png"/>
+					<div class="hdiv">
+						<h2 class="name">Dhaneeshhhhhhhhhhh</h2>
+						<h2 class="name">Dhaneeshhhhhhhhhhh</h2>					
+					</div>
+					<img class="button" src="call.png"/> 
+				</div>
+				
+				<ul>
+					<li>My Incoming Call Rules <img style="float:right;width:24px" src="add.png"/></li>
+					
+					<li>Test</li>
+					<li>Test</li>
+				</ul>
+				
+				
+			</div>
+			
+		</div>
+		<div class="tail">
+		</div>
+				
+			
+	</div>
+	
+	
+<script>
+	//if(string.length>10)
+	
+	$(document).ready(function(){
+		var mh = $(window).height();
+		var th = $(".toolbar").height();
+		$(".main").height(mh-th-16);		
+		//$("#contacts").width($(".body").width()-$("#group").width()-10);
+		$("#contacts").width($(".body").width()-0);
+		$(".contact").width($("#contacts").width()-0);		
+		$(".hdiv").width($(".contact").width()-125);
+		
+	});
+	
+	 document.addEventListener("deviceready", onDeviceReady, false);
+	 
+	
+	 
+	 function onDeviceReady() {
+            // specify contact search criteria
+            var options = new ContactFindOptions();
+            options.filter="";          // empty search string returns all contacts
+            options.multiple=true;      // return multiple results
+            filter = ["displayName", "name", "phoneNumbers","photos"];
+
+            // find contacts
+            navigator.contacts.find(filter, onSuccess, onError, options);
+        }
+
+        // onSuccess: Get a snapshot of the current contacts
+        //
+        function onSuccess(contacts) {
+            console.log(contacts.length);
+            for (var i=0; i<contacts.length; i++) {
+                
+				//var LI=$("#list").append('<li>'+contacts[i].displayName+'</li>');
+				var photoName = "user.png";
+				var phoneN = "";
+				
+				if (contacts[i].photos) {
+                    for (var j=0; j<contacts[i].photos.length; j++) {
+						if(contacts[i].photos[j].value!=undefined && contacts[i].photos[j].value!=null ){
+                        photoName =contacts[i].photos[j].value;
+						break;
+						}
+                        
+                    }
+                }
+				
+				if (contacts[i].phoneNumbers) {
+                    for (var j=0; j<contacts[i].phoneNumbers.length; j++) {
+						if(contacts[i].phoneNumbers[j].value!=undefined && contacts[i].phoneNumbers[j].value!=null ){
+                        phoneN = contacts[i].phoneNumbers[j].value;
+						break;
+						}
+                    }
+                }
+				var dispName=contacts[i].displayName;
+				
+				if(dispName){
+					dispName = dispName.substr(0,20);
+				
+				}else{
+					dispName="";
+				}
+				
+				var cCont  = "<div class=\"contact shadow\"><img class=\"photo\" src=\""+photoName+"\"/><h2 class=\"name\">"+dispName+"</h2><h2 class=\"name\">"+phoneN+"</h2><img class=\"button\" src=\"call.png\"/></div>";
+				$("#contacts").append(cCont);
+				
+				/*
+				<div class="contact shadow">
+					
+					
+					<h2 class="name">Dhaneesh</h2>
+					
+				</div>
+				
+				
+                if (contacts[i].phoneNumbers) {
+                    for (var j=0; j<contacts[i].phoneNumbers.length; j++) {
+                        $(LI).append('<span>'+contacts[i].phoneNumbers[j].value+'</span><Br/>');
+                    }
+                }
+                if (contacts[i].emails) {
+                    for (var j=0; j<contacts[i].emails.length; j++) {
+                        $(LI).append('<span>'+contacts[i].emails[j].value+'</span><br/>');
+                    }
+                }
+                if (contacts[i].photos) {
+                    for (var j=0; j<contacts[i].photos.length; j++) {
+                        alert(contacts[i].photos[j].value);
+                        //$(LI).append('<span>'+contacts[i].photos[j].value+'</span><br/>');
+                    }
+                }
+                if (contacts[i].photos) {
+                    for (var j=0; j<contacts[i].photos.length; j++) {
+                        $(LI).append('<img src="'+contacts[i].photos[j].value+'"/><br/>');
+                    }
+                }*/
+				
+            }
+			$(".contact").width($("#contacts").width()-10);		
+		    $(".contact .name").width($(".contact").width()-125);
+        };
+
+        // onError: Failed to get the contacts
+        //
+        function onError(contactError) {
+            alert('onError!');
+        }
+		
+</script>
+</body>
+</html>

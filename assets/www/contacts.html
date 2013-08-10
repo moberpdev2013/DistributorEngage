@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;"/>
+<script type="text/javascript" charset="utf-8" src="cordova-2.5.0.js"></script>
+<script class="jsbin" src="jquery.tools.min.js"></script>
+ 
+  
+  
+
+<style>
+
+body {
+   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+   font-weight: 300;
+   margin:0px 5px;
+}
+.main{
+	margin:0px auto;
+	
+	max-width:700px;
+	
+	background:#fff;
+	border-radius:10px;
+	-webkit-box-shadow: 0px 0px 12px rgba(0,0,0,.6);
+box-shadow: 0px 0px 12px rgba(0,0,0,.6);
+-webkit-background-clip: padding-box;
+-moz-background-clip: padding;
+background-clip: padding-box;
+-webkit-border-radius: .6em /*{global-radii-blocks}*/;
+border-radius: .6em /*{global-radii-blocks}*/;
+		
+	
+	
+}
+.main{
+	
+	
+}
+.tail,.head{
+width:100%;
+height:7%;	
+min-height: 40px;
+
+
+background-color: #fafafa;
+background-image: -moz-linear-gradient(top,#fff,#f2f2f2);
+background-image: -webkit-gradient(linear,0 0,0 100%,from(#fff),to(#f2f2f2));
+background-image: -webkit-linear-gradient(top,#fff,#f2f2f2);
+background-image: -o-linear-gradient(top,#fff,#f2f2f2);
+background-image: linear-gradient(to bottom,#fff,#f2f2f2);
+background-repeat: repeat-x;
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff',endColorstr='#fff2f2f2',GradientType=0);
+border: 1px solid #d4d4d4;
+-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;
+-webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.065);
+-moz-box-shadow: 0 1px 4px rgba(0,0,0,0.065);
+box-shadow: 0 1px 4px rgba(0,0,0,0.065);
+	
+}
+.tail{
+	border-radius:0 0 10px 10px;
+}
+.head{
+	border-radius:10px 10px 0 0;
+	-webkit-box-shadow: inset 0 -1px 0 rgba(0,0,0,0.1),0 1px 10px rgba(0,0,0,0.1);
+-moz-box-shadow: inset 0 -1px 0 rgba(0,0,0,0.1),0 1px 10px rgba(0,0,0,0.1);
+box-shadow: inset 0 -1px 0 rgba(0,0,0,0.1),0 1px 10px rgba(0,0,0,0.1);
+}
+
+
+.body{
+	width:100%;
+	height:86%;
+	background:#fff;
+	
+}
+
+li{
+list-style:none;
+}
+li:first-child{
+	border:1px solid #f0f0f0;
+	border-bottom:none;
+	border-radius:5px 5px 0 0;
+}
+.head a{
+	margin-top:5px;
+}
+
+
+.shadow{
+	
+-webkit-background-clip: padding-box;
+-moz-background-clip: padding;
+background-clip: padding-box;
+
+
+
+
+}
+.contact{
+	width:100%;border:1px solid #aaa;height:80px;margin:0px auto;background:#fff;border-radius:0px;border:none;border-bottom:1px solid #ccc;
+}
+.contact1{
+	width:94%;border:1px solid #f0f0f0;min-height:100px;height:auto;margin:10px auto;background:#fff;border-radius:3px;
+	-webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.065);
+-moz-box-shadow: 0 1px 4px rgba(0,0,0,0.065);
+box-shadow: 0 1px 4px rgba(0,0,0,0.065);
+}
+
+#group{
+	overflow:auto;width:100px;height:100%;border:1px solid #fff;float:left;
+}
+#group div{
+	width:90%;border:1px solid #aaa;min-height:40px;margin:5px auto;background:#fff;border-radius:3px;
+}
+#contacts{
+	overflow:auto;width:300px;height:100%;border:1px solid #eee;float:left;background:#fafafa;margin-left:0px;
+}
+.contacts{
+	overflow:auto;width:300px;height:100%;border:1px solid #eee;float:left;background:#fafafa;margin-left:0px;
+}
+
+
+.photo{
+	float:left;
+	width:48px;height:48px;padding:3px;border:1px solid #aaa;margin-left:5px;margin-top:12px;border-radius:5px;
+}
+.button{
+	float:right;width:48px;
+}
+.name{
+	text-overflow:clip;
+	padding:0px;
+	font-size:10pt;	
+	color:#444;
+	float:left;	
+	margin:10px;
+	-webkit-margin-after: 0px;
+}
+.hdiv{
+		height:100%;
+		float:left;
+		width:auto;
+}
+.heados{
+	 margin-top:0px;
+    margin-bottom:0px;
+    color:#fff;
+    background:#6D84B4;
+	text-align:center;    
+    font-size:12px;
+	font-weight:bold;
+}
+.tail{
+	
+}
+.btn {
+cursor:pointer;
+	display: inline-block;
+background: url(btn.bg.png) repeat-x 0px 0px;
+padding: 5px 10px 6px 10px;
+font-weight: bold;
+text-shadow: 1px 1px 1px rgba(255,255,255,0.5);
+border: 1px solid rgba(0,0,0,0.4);
+-moz-border-radius: 5px;
+-moz-box-shadow: 0px 0px 2px rgba(0,0,0,0.5);
+-webkit-border-radius: 5px;
+-webkit-box-shadow: 0px 0px 2px rgba(0,0,0,0.5);
+}
+
+.dialog {
+
+border: 1px solid #a4baca;
+background: #fdfdfd;
+-webkit-border-radius: 4px;
+border-radius: 4px;
+-webkit-box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+-moz-box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+-webkit-background-clip: padding-box;
+background-clip: padding-box;
+
+display:none;
+}
+
+.dialog .header {
+position: relative;
+background: #517fa4;
+height: 44px;
+border: 1px solid #1c5380;
+border-width: 1px 1px 0;
+-webkit-box-shadow: 0 -1px 0 #06365f inset, 0 1px 0 rgba(255,255,255,0.2) inset;
+-moz-box-shadow: 0 -1px 0 #06365f inset, 0 1px 0 rgba(255,255,255,0.2) inset;
+box-shadow: 0 -1px 0 #06365f inset, 0 1px 0 rgba(255,255,255,0.2) inset;
+-webkit-border-radius: 4px 4px 0 0;
+border-radius: 4px 4px 0 0;
+background-color: #517fa4;
+background: #517fa4;
+
+background-position: 50% 50%;
+margin: -1px -1px 1px;
+}
+.dialog input{
+	font-size: 16px;
+    color: #999;
+    padding: 6px;
+    border-radius:5px;
+    border: 1px solid #b8b8b8;
+	width:80%;
+	
+	
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  
+  display:block;
+ 
+  margin-top:5px;
+  outline: none;
+}
+.dialog .logo {
+
+
+color: #fff;
+font-size: 18px;
+text-align: center;
+
+font-family: "freight-sans-pro","proxima-nova","Helvetica Neue",Arial,Helvetica,sans-serif;
+}
+
+.dialog .close {
+    background-image:url(close.png);
+    position:absolute; 
+	right:-10px;
+	z-index:100;
+	top:-10px;
+    cursor:pointer;
+    height:35px;
+    width:35px;
+}
+
+#createserver table input{
+	
+}
+.contact ul,.contact li{
+	padding:0px;
+	margin:0px;
+	float:left;
+	width:100%;
+	border:none;
+}
+.contact li{
+	
+	height:20px;;
+}
+.check {
+		 -webkit-transform:scale(0,0);
+    -webkit-transform-origin: top left;
+    -moz-transform:scale(0,0);
+    -moz-transform-origin: top left;
+    -o-transform:scale(0,0);
+    -o-transform-origin: top left;
+    transform:scale(0,0);
+    transform-origin: top left;
+	opacity:0;
+  }
+
+  
+  .transparent {
+		opacity:1;
+		z-index:1;
+	-webkit-transform:scale(1,1);
+    -webkit-transform-origin: bottom right;
+    -moz-transform:scale(1,1);
+    -moz-transform-origin: bottom, right;
+    -o-transform:scale(1,1);
+    -o-transform-origin: bottom right;
+    transform:scale(1,1);
+    transform-origin: bottom right;
+  }
+.itemA {
+    
+   opacity:1;
+   z-index:10;
+  -webkit-transition: all 1s ease-in-out;
+    -moz-transition: all 1s ease-in-out;
+    -o-transition: all 1s ease-in-out;
+    transition: all 1s ease-in-out;
+	
+	
+animation-timing-function: ease-in-out;
+animation-iteration-count: infinite;
+animation-duration: 10s;
+animation-direction: alternate;
+  
+  }
+  .details,.servers{
+		position:absolute;
+	}
+	
+	.selected{
+background: #0571A6 !important;
+background: -moz-linear-gradient(top, #73aec9 0, #73aec9 1px, #338ab0 1px, #0571a6 100%) !important;
+background: -o-linear-gradient(top, #73aec9 0, #73aec9 1px, #338ab0 1px, #0571a6 100%) !important;
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #73aec9), color-stop(5%, #73aec9), color-stop(5%, #338ab0), color-stop(100%, #0571a6)) !important;
+background: linear-gradient(top, #73aec9 0%,#73aec9 1px,#338ab0 1px,#0571a6 100%) !important;
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#338AB0', endColorstr='#0571A6',GradientType=0 ) !important;
+border-color: #045a8b !important;
+color: #fff !important;
+
+
+}
+#group div h2{
+	
+	margin:5px;   
+    color:#fff;
+    background-color:#6D84B4;
+    padding:2px 0px;	
+	border-radius:2px 2px 0 0;	
+	text-align:center;
+    height:38px;
+    font-size:12px;
+	font-weight:bold;
+}
+.blockhead{
+	margin:1px;
+    margin-bottom:0px;
+    color:#fff;
+    background-color:#666;
+    padding:2px 0px;
+	border:1px solid #f0f0f0!important;
+	
+	border-radius:2px 2px 0 0;	
+	text-align:center;
+    
+    font-size:12px;
+	font-weight:bold;
+}
+</style>
+</head>
+<body>
+	
+	
+	<div class="main">
+	
+		<div class="head">
+			
+			<button id="add" class="btn" onclick="createserver();">Add Server</button>
+                
+        
+    
+		</div>
+		<div class="body servers">
+		
+			
+			<div id="contacts">
+				
+				
+				
+			</div>
+			
+		</div>
+		
+		<div class="body itemA check details">
+		
+			<div  id="group">
+				
+				
+				
+			</div>
+			
+			<div class="contacts" style="border-right:none;margin-left:4px">
+				
+				
+
+				
+			</div>
+			
+			
+		</div>
+		<div class="tail">
+			
+		</div>
+		
+		
+		<div id="createserver" class="server dialog" >
+			<a  class="close"></a>
+			<div>
+				<table>
+				<tr>
+					<td style="width:40%"><label>Server Name</label></td> <td style="width:60%"><input id="name" type="text"/><td>
+				</tr>
+				
+				<tr>
+					<td><label>IP</label></td> <td><input id="ip" type="text" /><td>
+				</tr>
+				
+				<tr>
+					<td><label>PORT</label></td> <td><input id="port" type="text" /><td>
+				</tr>
+				
+				<tr>
+					<td><label>User Name</label></td> <td><input  id="uname" type="text" /><td>
+				</tr>
+				
+				<tr>
+					<td><label>Password Name</label></td> <td><input id="upassword" type="text" /><td>
+				</tr>
+				
+				</table>
+				
+				
+				
+			</div>
+			
+			<button class="btn" onclick="insertElement();">Done</button>
+		</div>
+				
+			
+	</div>
+	
+	
+<script>
+	
+	
+	$(".server").overlay({			
+				
+		closeOnClick: false,
+		load: false
+
+	});
+			
+	function createserver(){
+	
+		$(".server").overlay().load();
+	
+	}
+	
+	$(document).ready(function(){
+		var mh = $(window).height();
+		var th = $(".toolbar").height();
+		$(".main").height(mh-th-16);		
+		$(".body").width($(".main").width());
+		$(".dialog").width($(".main").width()-10);
+		$(".body").height($(".main").height()-2*$(".head").height()-4);
+		$("#contacts").width($(".body").width()-0);
+		
+		$(".contacts").width($(".body").width()-$("#group").width()-10);
+		
+		$(".servers .contact").width($("#contacts").width()-0);		
+		$(".hdiv").width($(".contact").width()-125);
+		
+		if(!isMobile.any()){
+			initDatabase();
+		}
+		
+	});
+	
+	document.addEventListener("deviceready", initDatabase, false);
+	
+	function createTables(callBack){
+		DEMODB.transaction(
+			function (transaction) {
+				
+				transaction.executeSql("CREATE TABLE IF NOT EXISTS elements_data(name TEXT ,ip TEXT,port TEXT, uname TEXT, upassword TEXT);", [], function(){
+				   readElements();
+				}, errorHandler);
+				
+				
+			}
+		);
+	
+	}
+	
+	
+	function readElements(){
+	
+	$("#contacts").html("");
+
+	DEMODB.transaction(function (transaction) {
+				
+				
+					transaction.executeSql("SELECT * FROM elements_data", [], function(transaction, results){
+						
+						if(results.rows==null || results.rows.length==0|| results.rows.item(0).name==undefined){
+							
+							
+						}else{
+						
+							for (var i=0; i<results.rows.length; i++) {
+        
+								var row = results.rows.item(i);
+							
+								$("#contacts").append("<div class=\"contact shadow\"><ul><li><label class=\"name\">Server Name</label> <h2 class=\"name\">"+row.name+"</h2></li><li><label class=\"name\">IP Address</label> <h2 class=\"name\">"+row.ip+"</h2></li></ul></div>");
+								
+								
+							}
+							
+							$(".contact").click(function(){
+								$("#add").css("display","none");
+								$("#group").css("display","block");
+								
+								$(".details").addClass("transparent");
+								$(".head").addClass("heados");
+									
+								getApps();
+								
+								//$(".details").css("display","block");
+							});
+							
+							
+						}
+						
+					});
+				
+				
+		});
+}
+	
+	function insertElement(){
+		
+		var name=$("#name").val();
+		var ip=$("#ip").val();
+		var port=$("#port").val();
+		var uname=$("#uname").val();
+		
+		var upassword=$("#upassword").val();
+		var dd=[];
+		dd['name']=name;
+		dd['ip']=ip;
+		dd['port']=port;
+		dd['uname']=uname;
+		dd['upassword']=upassword;
+		
+		insert("elements_data",dd);
+		
+		$(".server").overlay().close();
+		
+	}
+	
+	function insert(tableName,dataKVP){
+	DEMODB.transaction(
+	    function (transaction) {
+		 
+		var sqK="(";
+		var app="";
+		var sqV="(";
+		var data=new Array();
+		for(var key in dataKVP){
+		
+			sqK+=app+key;
+			sqV+=app+"?";
+			app=",";
+			data[data.length]=dataKVP[key];
+		}
+		sqK+=") ";
+		sqV+=") ;";
+		
+		
+		
+	//	transaction.executeSql("INSERT INTO layout_settings(id, layoutname, level, tag, extra) VALUES (?, ?, ?, ?, ?)", [data[0], data[1], data[2], data[3], data[4]]);
+	
+		transaction.executeSql("INSERT INTO "+tableName+sqK+" VALUES "+sqV, data,function(){
+			 readElements();
+		},errorHandler);
+	    }
+	);	
+	}
+	
+	function errorHandler(transaction, error){
+		if (error.code==1){
+			// DB Table already exists
+		} else {
+			// Error is a human-readable string.
+			console.log('Oops.  Error was '+error.message+' (Code '+error.code+')');
+		}
+		return false;
+	}
+
+
+	function nullDataHandler(){
+		console.log("SQL Query Succeeded");
+		
+	}
+
+	function initDatabase() {
+		try {
+			if (!window.openDatabase) {
+				alert('Local Databases are not supported by your browser. Please use a Webkit browser for this demo');
+			} else {
+				var shortName = 'DB_SSH_6';
+				var version = '2.0';
+				var displayName = 'SSH Test';
+				var maxSize = 100000; // in bytes
+				DEMODB = openDatabase(shortName, version, displayName, maxSize);
+				createTables();
+				
+			}
+		} catch(e) {
+			if (e == 2) {
+				// Version mismatch.
+				console.log("Invalid database version.");
+			} else {
+				console.log("Unknown error "+ e +".");
+			}
+			return;
+		} 
+	}
+	
+	
+	var isMobile = {
+    Android: function() {
+        return navigator.userAgent.match(/Android/i);
+    },
+    BlackBerry: function() {
+        return navigator.userAgent.match(/BlackBerry/i);
+    },
+    iOS: function() {
+        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+    },
+    Opera: function() {
+        return navigator.userAgent.match(/Opera Mini/i);
+    },
+    Windows: function() {
+        return navigator.userAgent.match(/IEMobile/i);
+    },
+    any: function() {
+        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+    }
+};
+
+	
+	///////////////////
+	
+	var commandDetaMap =[];
+	
+	function getApps(){
+	 
+			console.log("Inside GetApps");
+			
+			$.getJSON('json/commands.json',function(data){
+			
+				$("#group").html("");
+	
+				$.each(data.commands.commandgroup,function(i,j){		
+					
+					$("#group").append("<div id=\""+i+"\" class=\"shadow\" onclick=\"getDetailsFromJSON('"+j.name+"','"+i+"')\"><h2>"+j.name+"</h2></div>");
+					commandDetaMap[j.name]=j;
+				});
+			});
+			
+			
+			
+	}
+	
+	function formatData(data){
+	
+				var resp = data.split("\n");
+				var response="";
+				
+				for(var a=0;a<resp.length;a++){
+				
+					
+					$.trim(resp[a]);
+					
+					if($.trim(resp[a])==""){
+						continue;
+					}
+					
+					response+=$.trim(resp[a])+"</br>";
+					
+				}
+		return response;
+	}
+	
+     function executeCommand(command){
+		cordova.exec(function(out) {
+		
+				
+						
+				$("#data_"+command).html(formatData(out));		
+				
+			}, function(err) {
+						callback('Nothing to echo.');
+			}, "SSHPlugin", "command", [command]);
+				
+	 }
+        function getDetailsFromJSON(name,id) {
+		
+		    var contacts=null;
+			$(".contacts").html("");
+			
+			$("#group .shadow").removeClass("selected");
+             $("#"+id).addClass("selected");
+			
+			if(commandDetaMap[name].command){
+				
+				
+				
+				var phoneN = commandDetaMap[name].command.name;
+				
+				var dispName = name;		
+				
+				var cCont  = "<div class=\"contact1 shadow\"><h2 class=\"blockhead\">"+dispName+"\t "+phoneN+"</h2><p id=\"data_"+commandDetaMap[name].command.id+"\"></p></div>";
+				
+				$(".contacts").append(cCont);
+				
+				executeCommand(commandDetaMap[name].command.id);
+			}
+			
+			//$(".contact1").width($(".contacts").width());		
+			$(".contact1 .name").width($(".contact1").width()-125);
+        }
+
+		
+</script>
+</body>
+</html>

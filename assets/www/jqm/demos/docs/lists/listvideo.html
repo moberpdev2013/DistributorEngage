@@ -1,0 +1,174 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<title>jQuery Mobile Docs - Lists with Form Controls</title> 
+	<link rel="stylesheet"  href="../../css/themes/default/jquery.mobile-1.2.0.css" />  
+	
+
+<script  src="../../../../cordova-2.5.0.js"></script>
+
+	<script src="../../js/jquery.js"></script>
+	
+	
+	
+	<script src="../../js/jquery.mobile-1.2.0.js"></script>
+	
+	<script src="../../../../database.js"></script>
+	
+	<script src="../../../../listutils.js"></script>
+	
+	<script src="../../../../filesystem.js"></script>
+	
+	<script src="../../../../notification.js"></script>
+
+<style>
+.smi{
+	width: 60px;
+	height: 60px;
+	padding:5px;
+	margin:5px;
+	border:1px solid #ccc;
+	border-width: 1px!important;
+}
+</style>
+</head> 
+<body> 
+<div  data-role="page" >
+	<div  data-role="header" class="ui-bar-b">
+	<a href="listsnotifications.html" data-icon="back" id="back">Back</a>
+	<h1 id="header">Help Desk</h1>
+	<a href="index.html" data-icon="gear" class="ui-btn-right">Options</a>
+	</div>
+	<div id="refresh" >
+	<button  
+						 data-inset="true" data-role="button" onclick="refreshData();">
+						
+						
+						Refresh Data
+						
+
+	</button>
+	</div>
+	<ul style="display: none" id="offlined" data-role="listview"
+						data-inset="true">
+						<li data-role="list-divider data-theme="a"><img
+							src="images/stopped.png" class="ui-li-icon">Data Connection
+							Unavailable</li>
+						<li>
+
+
+
+							<div style="font-weight: bold; font-size: 10pt">Data you
+								see might not be the original updated one.</div>
+
+						</li>
+
+					</ul>
+	
+	
+	<div data-role="content">
+						
+		<ul data-role="listview" data-theme="d" data-divider-theme="d" id="mylist" data-inset="true">
+			
+		</ul>
+		
+		<div data-transition="pop"  data-role="popup" id="popupPhotoPortrait" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15" >
+				<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a><img src="images/user_helpdesk720X720.png" alt="Photo landscape">
+		</div>
+		
+		
+		
+		<div data-transition="pop"  data-role="popup" id="popupText" class="photopopup" data-overlay-theme="b" data-corners="true" data-tolerance="30,15" >
+				<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+				
+				<h3 class="from">Test</h3>	
+				<p style="min-height:200px;min-width:200px" class="data">Test</p>		
+		</div>
+		
+	</div><!-- /content -->
+
+	
+
+	</div><!-- /page -->
+
+<script>
+var isOnline=true;
+var isOffline=false;
+var type="video";
+var user=null;
+var isReady = false;
+
+function onBackKeyDown() {
+	$("#back").click();
+	console.log("Back Pressed");
+	window.open("listsnotifications.html","_self");
+}
+
+document.addEventListener("online", function() {
+
+	$("#offlined").css("display", "none");
+	$("#refresh").css("display", "block");	
+	isOffline = false;
+	isOnline=true;
+	offlineMessage();
+
+}, false);
+document.addEventListener("offline", function() {
+
+	$("#offlined").css("display", "block");
+	$("#refresh").css("display", "none");
+	isOffline = true;
+	isOnline=false;
+	offlineMessage();
+
+}, false);
+
+function offlineMessage() {	
+	if (isOffline) {
+		$("#offlined").css("display", "block");
+		$("#refresh").css("display", "none");
+	} else {
+		$("#offlined").css("display", "none");
+		$("#refresh").css("display", "block");
+
+	}
+	console.log("Set Interval Called.."+isOffline);
+}
+
+document.addEventListener("deviceready", readyCall, false);
+
+function getUser(){
+	return user;
+}
+
+function readyCall(){
+	document.addEventListener("backbutton", onBackKeyDown, false);
+	initDatabase(function(){
+		readProperty(function(data){			
+			if(data!=null){
+				user = data['user'];			
+			}			
+			console.log("User Fetched :::::::::: "+user);			
+			getMessagingInfo(false,type);		
+			isReady=true;		
+		});	
+	});
+	
+}
+function refreshData(){	
+	if(isOnline){
+		getMessagingInfo(true,type);
+	}
+}
+setInterval(function(){
+	if(isOnline){
+		getMessagingInfo(true,type);
+	}	
+},20000);
+
+
+</script>
+</body>
+</html>

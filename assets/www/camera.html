@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Capture Photo</title>
+	<script src="jquery.tools.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="cordova-2.5.0.js"></script>
+    <script type="text/javascript" charset="utf-8">
+function capturePhoto() {
+ 
+      	navigator.camera.getPicture(uploadImage, fail, { quality : 75, 
+ 	 															destinationType : Camera.DestinationType.DATA_URL, 
+  																sourceType : Camera.PictureSourceType.CAMERA, 
+															  	allowEdit : true,
+															  	encodingType: Camera.EncodingType.JPEG,
+															  	targetWidth: 500,
+															  	targetHeight: 500,
+															  	popoverOptions: CameraPopoverOptions,
+															  	saveToPhotoAlbum: false });
+    }
+    
+
+function uploadImage(ImagePath)
+{
+    try
+    {
+        var options = new FileUploadOptions();
+        options.fileKey = "file";
+        options.fileName = ImagePath.substr(ImagePath.lastIndexOf('/')+1);
+        options.mimeType = "image/jpg";
+
+        var params = new Object();    
+        
+        params.complaintBoxText="Test ........";
+        params.user="9881763210";
+        
+        options.params = params;
+        options.chunkedMode = false;
+        
+        var ft = new FileTransfer();
+        var url = "My_WebService_URL";
+        
+        $.get("http://showmystatus.appspot.com/complaints_upload.jsp",function(data){	
+					
+				ft.upload(ImagePath, encodeURI($.trim(data)), win, fail, options, false);			
+					
+		
+		 });
+        
+        
+    } 
+    catch (e) 
+    {
+        console.error("Error :"+e.message);
+    }
+}
+//Success callback
+function win(response) 
+{
+    alert("Image uploaded successfully!!");
+}
+//Failure callback
+function fail(error) 
+{
+    alert("There was an error uploading image");
+}   	
+   	
+    </script>
+  </head>
+  <body>
+    <button onclick="capturePhoto();">Capture Photo</button> <br>
+    <button onclick="capturePhotoEdit();">Capture Editable Photo</button> <br>
+    <button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button><br>
+    <button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);">From Photo Album</button><br>
+    <img style="display:none;width:200px;height:200px;" id="smallImage" src="" />
+    <img style="display:none;" id="largeImage" src="" />
+  </body>
+</html>

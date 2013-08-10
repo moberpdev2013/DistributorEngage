@@ -1,0 +1,149 @@
+
+<!DOCTYPE html> 
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<title>jQuery Mobile Framework - Dialog Example</title> 
+	<link rel="stylesheet"  href="../../css/themes/default/jquery.mobile-1.2.0.css" />  
+	
+	<script  src="../../../../cordova-2.5.0.js"></script>
+	
+	<script src="../../js/jquery.js"></script>
+	
+	<script src="../../js/jquery.mobile-1.2.0.js"></script>
+	
+	<script src="../../../../database.js"></script>
+	
+	<script src="../../../../listutils.js"></script>
+	
+	<style>
+		.ui-grid-c{
+			border-bottom:1px solid #f0f0f0!important;padding:10px;
+		}
+		.ui-grid-c input{
+			border-radius:3px;
+			height:23px;
+			border:1px solid #aaa;
+		}
+	</style>
+
+</head> 
+<body> 
+
+	<div data-role="page" data-overlay-theme="e">
+		<div data-role="header" class="ui-bar-c" data-theme="a">
+			<a href="bt.html" data-icon="back" id="back">Back</a>
+			<h1 id="header">Update Data</h1>
+	
+		</div>
+		
+		<ul style="display: none" id="offlined" data-role="listview"
+						data-inset="true">
+						<li data-role="list-divider data-theme="a"><img
+							src="images/stopped.png" class="ui-li-icon">Data Connection
+							Unavailable</li>
+						<li>
+
+
+
+							<div style="font-weight: bold; font-size: 10pt">Data you
+								see might not be the original updated one.</div>
+
+						</li>
+
+					</ul>
+
+		<!-- <div data-role="listview" data-theme="d" id="mydlist">
+		
+			
+			
+		</div>-->
+		
+		
+		<ul data-role="listview" data-inset="true" data-theme="c" id="mydlist">
+							</ul>
+		
+		
+		<div data-role="footer" data-theme="c" data-position="fixed">		
+	<div data-role="navbar" id="navbar">
+		<ul>
+			<li><a onClick="updateAll()" data-role="button"  data-theme="b" >Update All</a></li>
+			
+		</ul>
+	</div><!-- /navbar -->
+</div><!-- /footer -->
+			
+	</div>
+	
+	<script>
+		
+		var user=null;
+		
+		function getUser(){
+			return user;
+		}
+		
+		
+		
+		document.addEventListener("online", function(){
+		
+			$("#navbar").css("display","block");
+			
+			$("#offlined").css("display","none");
+			
+			
+			initDatabase();		
+
+			readProperty(function(data){
+				
+				if(data!=null){
+					user = data['user'];
+				
+				}
+				
+				createUpdateDataList("Promotions",false);
+				
+			});		
+		
+		}, false);
+
+
+		document.addEventListener("offline", function(){
+			
+			$("#navbar").css("display","none");
+		
+			$("#offlined").css("display","block");
+			
+			initDatabase();		
+
+			readProperty(function(data){
+				
+				if(data!=null){
+					user = data['user'];
+				
+				}
+				
+				createUpdateDataList("Promotions",true);
+				
+			});		
+		
+		}, false);
+
+		document.addEventListener("deviceready", function(){
+			
+			document.addEventListener("backbutton", function(){
+				
+				$("#back").click();
+				
+			}, false);
+			
+		}, false);
+		
+		
+		
+	</script>
+	
+</body>
+
+</html>

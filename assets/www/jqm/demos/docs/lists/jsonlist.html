@@ -1,0 +1,112 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<title>jQuery Mobile Docs - Lists with Form Controls</title> 
+	<link rel="stylesheet"  href="../../css/themes/default/jquery.mobile-1.2.0.css" />  
+	
+
+	<script src="../../js/jquery.js"></script>
+	<script  src="../../../../cordova-2.5.0.js"></script>
+	<script src="../../js/jquery.mobile-1.2.0.js"></script>
+	<script src="../../../../database.js"></script>
+	<script src="../../../../listutils.js"></script>
+
+</head> 
+<body> 
+
+	<div  data-role="header" class="ui-bar-b">
+	<a href="ic.html" data-icon="back" id="back">Back</a>
+	<h1 id="header">Help Desk</h1>
+	<a href="index.html" data-icon="gear" class="ui-btn-right">Options</a>
+</div>
+
+	<div data-role="content">
+		<div class="content-primary">
+	<form>
+	
+	
+	
+		
+			
+		<ul id="mydlist" data-role="listview" data-inset="true">
+			<!--
+			<li><a href="index.html">
+				<h3>Stephen Weber</h3>
+				<p><strong>You've been invited to a meeting at Filament Group in Boston, MA</strong></p>
+				<p>Hey Stephen, if you're available at 10am tomorrow, we've got a meeting with the jQuery team.</p>
+				<p class="ui-li-aside"><strong>6:24</strong>PM</p>
+			</a></li>
+			<li><a href="index.html">
+				<h3>jQuery Team</h3>
+				<p><strong>Boston Conference Planning</strong></p>
+				<p>In preparation for the upcoming conference in Boston, we need to start gathering a list of sponsors and speakers.</p>
+				<p class="ui-li-aside"><strong>9:18</strong>AM</p>
+			</a></li>
+			-->
+		</ul>
+		
+		
+		
+		</form>
+		
+		</div><!--/content-primary -->		
+
+	</div><!-- /content -->
+
+	
+
+	</div><!-- /page -->
+
+	<script>
+		$(document).ready(function(){		
+			
+			//createDataList("Promotions");
+		});
+		
+		document.addEventListener("offline", function(){
+		
+			createDataList("Promotions",true);
+		
+		}, false);
+		
+		var user=null;
+		
+		function getUser(){
+			return user;
+		}
+		
+		
+		document.addEventListener("online", function(){
+		
+			initDatabase();		
+
+			readProperty(function(data){
+				
+				if(data!=null){
+					user = data['user'];
+				
+				}
+				
+				createDataList("Promotions",false);
+				
+			});		
+		
+		}, false);
+		
+		
+		document.addEventListener("deviceready", readyCall, false);
+		
+		function readyCall(){
+			document.addEventListener("backbutton", function(){
+				
+				$("#back").click();
+				
+			}, false);
+		}
+		
+		
+	</script>
+	</body>
+	</html>
